@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Example: Custom controls - jWYSIWYG</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="../../jquery.wysiwyg.css" type="text/css"/>
+<script type="text/javascript" src="../lib/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../jquery.wysiwyg.js"></script>
+<script type="text/javascript">
+(function($) {
+	$(document).ready(function() {
+		var MyPluginHello = {
+			// required
+			name:	"hello",
+
+			world:	function() {
+				alert("Hello world!");
+			},
+
+			methodForRealLife: function(object, text) {
+				// standard operations
+				if ("object" !== typeof(object) || !object.context) {
+					object = this;
+				}
+
+				if (!object.each) {
+					console.error("Something goes wrong, check object");
+				}
+
+				return object.each(function() {
+					var Wysiwyg = $(this).data("wysiwyg");
+
+					if (!Wysiwyg) {
+						return this;
+					}
+
+					// Plugin code
+					// Wysiwyg gives access to all methods and properties, also
+					// you can extend base functionality
+					Wysiwyg.newPropertyName = "methodForRealLife";
+					Wysiwyg.newMethodName = function() {
+						this.setContent(this.newPropertyName + "<br>" + text);
+					};
+
+					Wysiwyg.newMethodName();
+				});
+			}
+		};
+
+		// Register your plugin
+		$.wysiwyg.plugin.register(MyPluginHello);
+
+		$("textarea").wysiwyg();
+
+		$("#pluginButton1").click(function() {
+			// run plugin "hello" with method "world"
+			$("textarea").wysiwyg("hello.world");
+		});
+
+		$("#pluginButton2").click(function() {
+			// another way to run plugin "hello" with method "world"
+			$.wysiwyg.hello.world($("textarea"));
+		});
+
+		$("#pluginButton3").click(function() {
+			// run plugin "hello" with method "methodForRealLife"
+			$("textarea").wysiwyg("hello.methodForRealLife", "Argument Text 1");
+		});
+
+		$("#pluginButton4").click(function() {
+			// another way to run plugin "hello" with method "methodForRealLife"
+			$.wysiwyg.hello.methodForRealLife($("textarea"), "Argument Text 2");
+		});
+	});
+})(jQuery);
+</script>
+<style type="text/css">
+textarea { width: 400px; height: 100px; }
+</style>
+</head>
+<body>
+	<h1>jWYSIWYG</h1>
+	<h2>Example: Writing Plugins</h2>
+
+	<input type="button" value="Run hello.world()" id="pluginButton1"/>
+	<input type="button" value="Run hello.world()" id="pluginButton2"/>
+	<input type="button" value="Run hello.methodForRealLife()" id="pluginButton3"/>
+	<input type="button" value="Run hello.methodForRealLife()" id="pluginButton4"/>
+
+	<table>
+		<tr>
+			<td><textarea></textarea></td>
+			<td><textarea></textarea></td>
+		</tr>
+	</table>
+
+	<hr/>
+	<a href="index.html">Index</a>
+</body>
+</html>

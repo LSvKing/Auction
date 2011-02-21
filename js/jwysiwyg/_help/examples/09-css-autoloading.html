@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Example: CSS Autoloading &amp; initialContent - jWYSIWYG</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<script type="text/javascript" src="../lib/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../jquery.wysiwyg.js"></script>
+<script type="text/javascript" src="../lib/plugins/autoload/jquery.autoload.js"></script>
+<script type="text/javascript" src="../../plugins/wysiwyg.autoload.js"></script>
+<script type="text/javascript" src="../../controls/wysiwyg.image.js"></script>
+<script type="text/javascript" src="../../controls/wysiwyg.table.js"></script>
+<script type="text/javascript">
+(function($) {
+	$(document).ready(function() {
+		$("textarea").wysiwyg({
+			"autoGrow": true,
+			"maxHeight": 600,
+			"initialContent": "Content"
+		});
+	});
+})(jQuery);
+</script>
+<style type="text/css">
+.note { background-color: rgb(228, 228, 228); font-size: 80%; padding: 5px 6px; }
+textarea { width: 400px; height: 300px; }
+</style>
+</head>
+<body>
+	<h1>jWYSIWYG</h1>
+	<h2>Example: CSS Autoloading &amp; initialContent</h2>
+	
+	<p class="note">If script will not be able to find or download CSS file you will see something like this:<br/>
+		# bold<br/>
+		# italic<br/>
+		# strikeThrough<br/>
+		# underline</p>
+
+	<textarea></textarea>
+
+	<hr/>
+
+	<a href="index.html">Index</a>
+</body>
+</html>

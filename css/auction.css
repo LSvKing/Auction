@@ -1,0 +1,40 @@
+#gallery {
+	width:300px;
+	float:left;
+}
+
+#gallery img {
+	border: none;
+}
+ 
+#gallery_nav {
+	float: left;
+	width: 290px;
+	text-align: center;
+	border-color:ccc;
+	border-width:1px;
+	border-style:solid
+}
+ 
+#gallery_output {
+	float: left;
+	width: 290px;
+	height: 260px;
+	overflow: hidden;
+	border-color:ccc;
+	border-width:1px;
+	border-style:solid;
+	
+}
+ 
+#gallery_output img {
+	display: block;
+	margin: 0px auto 0 auto;
+}
+.clear {
+	clear:both;
+}
+
+#main {
+	float:left;
+}
